@@ -1,0 +1,51 @@
+
+version: '3'
+
+services:
+
+    # web server
+    my_project-nginx:
+        container_name: my_project-nginx
+        build: ./nginx
+        volumes:
+            - './app:${APP_ROOT}'
+        ports:
+            - '${APP_PORT}:80'
+        networks:
+            - my_project-network
+
+    # php
+    my_project-php:
+        container_name: my_project-php
+        build: ./php
+        volumes:
+            - './app:${APP_ROOT}'
+        networks:
+            - my_project-network
+
+    # db
+    my_project-mysql:
+        container_name: my_project-mysql
+        image: mysql:8
+        ports:
+            - '3306:3306'
+        volumes:
+            - './mysql:${DATABASE_PATH}'
+        environment:
+            MYSQL_DATABASE: ${DATABASE_NAME}
+            MYSQL_ROOT_PASSWORD: ${DB_ROOT_PWD}
+        networks:
+            - my_project-network
+
+    # phpmyadmin
+    my_project-adminer:
+        container_name: my_project-adminer
+        image: adminer:4-standalone
+        restart: always
+        ports:
+          - 8081:8080
+        networks:
+            - my_project-network
+
+networks:
+    my_project-network:
