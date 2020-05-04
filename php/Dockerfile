@@ -18,4 +18,4 @@ COPY --from=composer /usr/bin/composer /usr/bin/composer
 EXPOSE 9000
 
 # Set working directory
-WORKDIR /var/www/app
+WORKDIR /var/www/application
