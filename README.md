@@ -51,8 +51,25 @@ Docker + Laravel projekta sagatave
         - `# Using Debian, as root`
         - `curl -sL https://deb.nodesource.com/setup_12.x | bash -`
         - `apt-get install -y nodejs`
-- iekopēt konkrētās instrukcijas PHP konteinera Dockerfailā `php/Dockerfile`
+- iekopēt konkrētās instrukcijas PHP konteinera Dockerfailā `php/Dockerfile`:
+```
+# Install Node and npm
+RUN curl -sL https://deb.nodesource.com/setup_12.x | bash - \
+    && apt-get install -y nodejs
+```
 
+
+## Node.js alternatīva - vecs un nepārbaudīts piemērs
+```
+# Composer install
+RUN curl -sS https://getcomposer.org/installer | php
+RUN mv composer.phar /usr/local/bin/composer
+
+# Node, npm, gulp
+RUN apt-get -y --fix-missing install curl gnupg software-properties-common
+RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
+RUN apt-get install -y nodejs
+```
 
 ## Adminer
 - http://localhost:8081/?server=my_project-mysql&username=root&db=my_project-db
