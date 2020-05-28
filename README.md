@@ -39,6 +39,21 @@ Docker + Laravel projekta sagatave
 8. Veiciet datubāzes migrācijas, konteinerā izpildot komandu `php artisan migrate`
 
 
+## Node.js un npm instalēšana:
+- aiziet uz Node.js lapu https://nodejs.org/en/  
+- piefiksēt LTS versijas numuru
+- aiziet uz https://nodejs.org/en/download/ un atrast saiti `Installing Node.js via package manager`
+- tajā atrast sadaļu, kas attiecas uz Debian
+- 2020.05 jāiet uz `Node.js binary distributions are available from NodeSource.`
+    - https://github.com/nodesource/distributions/blob/master/README.md
+    - tur jāatrod instrukcijas, kas paredzētas LTS versijai Debian sistēmās
+    - `Node.js v12.x:`
+        - `# Using Debian, as root`
+        - `curl -sL https://deb.nodesource.com/setup_12.x | bash -`
+        - `apt-get install -y nodejs`
+- iekopēt konkrētās instrukcijas PHP konteinera Dockerfailā `php/Dockerfile`
+
+
 ## Adminer
 - http://localhost:8081/?server=my_project-mysql&username=root&db=my_project-db
 

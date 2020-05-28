@@ -14,6 +14,10 @@ RUN apt-get update \
 # Install Composer
 COPY --from=composer /usr/bin/composer /usr/bin/composer
 
+# Install Node and npm
+RUN curl -sL https://deb.nodesource.com/setup_12.x | bash - \
+    apt-get install -y nodejs
+
 # Expose port
 EXPOSE 9000
 
