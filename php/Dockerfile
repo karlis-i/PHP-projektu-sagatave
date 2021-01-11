@@ -1,9 +1,6 @@
 
 FROM php:7.4-fpm
 
-# Copy php.ini file
-COPY php.ini $PHP_INI_DIR/php.ini
-
 # Install PHP modules
 RUN apt-get update \
     && apt-get install -y \
@@ -11,15 +8,17 @@ RUN apt-get update \
         zip \
 && docker-php-ext-install bcmath pdo_mysql zip
 
-# Install Composer
+# Install Composer from Composer official Docker image
 COPY --from=composer /usr/bin/composer /usr/bin/composer
 
-# Install Node and npm
-RUN curl -sL https://deb.nodesource.com/setup_12.x | bash - \
-    && apt-get install -y nodejs
+RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
+RUN sed -i -e 's/upload_max_filesize = 2M/upload_max_filesize = 8M/' "$PHP_INI_DIR/php.ini"
+RUN sed -i -e 's/;date.timezone =/date.timezone = "Europe\/Riga"/' "$PHP_INI_DIR/php.ini"
+RUN sed -i -e 's/;date.default_latitude = 31.7667/date.default_latitude = 56.9514/' "$PHP_INI_DIR/php.ini"
+RUN sed -i -e 's/;date.default_longitude = 35.2333/date.default_longitude = 24.1131/' "$PHP_INI_DIR/php.ini"
 
 # Expose port
 EXPOSE 9000
 
 # Set working directory
-WORKDIR /var/www/application
+WORKDIR /
