@@ -21,22 +21,23 @@ Lai sāktu darbu ar šo projekta sagatavi, papildus konfigurēšana nav nepiecie
 3. Iedarbiniet konteineru, projekta direktorijā izpildot komandu `docker-compose up -d`
 4. Pieslēdzieties konteineram, projekta direktorijā izpildot komandu `docker exec -it  bash`.  
     NB! Ja `.env` failā ir mainīts `PHP_CONTAINER_NAME` nosaukums, tad konteinera pieslēgšanās komandā tas jāraksta `php-container` vietā!
-5. Ar komandu `pwd` pārliecinieties, ka atrodaties direktorijā `/var/www/project`! Ja ne, aizejiet uz to ar komandu `cd /var/www/project`
-6. Instalējiet Laravel ar komandu `composer create-project laravel/laravel .`
+5. Ar komandu `pwd` pārliecinieties, ka atrodaties direktorijā `/var/www/project`!  
+    Ja ne, aizejiet uz to ar komandu `cd /var/www/project`
+6. Instalējiet Laravel ar komandu `composer create-project laravel/laravel .`  
     NB! Neaizmirstiet komandas beigās norādīt punktu!
-7. Veiciet Laravel konfigurāciju:
-    Failā `project/.env`:
+7. Veiciet Laravel konfigurāciju:  
+    Failā `project/.env`:  
         `APP_NAME` - norādiet savas lietotnes nosaukumu  
-        `DB_HOST=database`
-        `DB_PORT=3306`
-        `DB_DATABASE=database`
-        `DB_USERNAME=root`
-        `DB_PASSWORD=root`
-    Failā `project/config/app.php`
-        `'timezone' => 'Europe/Riga',`
-        `'locale' => 'lv',`
+        `DB_HOST=database`  
+        `DB_PORT=3306`  
+        `DB_DATABASE=database`  
+        `DB_USERNAME=root`  
+        `DB_PASSWORD=root`  
+    Failā `project/config/app.php`  
+        `'timezone' => 'Europe/Riga',`  
+        `'locale' => 'lv',`  
 
-Tagad pārlūkā atverot [http://localhost/](http://localhost/) , Jums vajadzētu redzēt Laravel sākumlapu!
+Tagad pārlūkā atverot [http://localhost/](http://localhost/) , Jums vajadzētu redzēt Laravel sākumlapu!  
 
 
 ---
@@ -49,12 +50,12 @@ Galvenais, kas jāmaina, ja vēlaties sagatavi izmantot projektiem bez Laravel, 
 
 ## Changelog
 
-- 2021-04
+- 2021-04  
     - Pielāgota PHP 7.4 un Laravel 8  
     - Izmanto jaunākās MySQL un Adminer versijas  
-    - Gandrīz pilnībā pārrakstīti konfigurācijas faili
-- 2020-05
-    - Pirmā versija
+    - Gandrīz pilnībā pārrakstīti konfigurācijas faili  
+- 2020-05  
+    - Pirmā versija  
 
 ---
 
