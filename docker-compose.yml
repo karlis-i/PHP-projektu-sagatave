@@ -4,48 +4,57 @@ version: '3'
 services:
 
     # web server
-    my_project-nginx:
-        container_name: my_project-nginx
-        build: ./nginx
+    # https://hub.docker.com/_/nginx
+    web-server:
+        container_name: ${SERVER_CONTAINER_NAME}
+        image: nginx:latest
         volumes:
-            - './application:${APP_ROOT}'
+            - './nginx:/etc/nginx/templates'
+            - './project:${APP_ROOT}'
         ports:
             - '${APP_PORT}:80'
+        environment:
+            - PHP_CONTAINER_NAME=${PHP_CONTAINER_NAME}
+            - SERVER_PORT=${APP_PORT}
+            - SERVER_NAME=${HOSTNAME}
+            - DOCUMENT_ROOT=${DOCUMENT_ROOT}
         networks:
-            - my_project-network
+            - project-network
 
     # php
-    my_project-php:
-        container_name: my_project-php
+    # https://hub.docker.com/_/php
+    php-processor:
+        container_name: ${PHP_CONTAINER_NAME}
         build: ./php
         volumes:
-            - './application:${APP_ROOT}'
+            - './project:${APP_ROOT}'
         networks:
-            - my_project-network
+            - project-network
 
     # db
-    my_project-mysql:
-        container_name: my_project-mysql
-        image: mysql:8
-        ports:
-            - '3306:3306'
+    # https://hub.docker.com/_/mysql
+    database:
+        container_name: ${DATABASE_CONTAINER_NAME}
+        image: mysql
         volumes:
-            - './mysql:${DATABASE_PATH}'
+            - './mysql:${DB_PATH}'
+        ports:
+            - ${DB_PORT}:3306
         environment:
-            MYSQL_DATABASE: ${DATABASE_NAME}
+            MYSQL_DATABASE: ${DB_NAME}
             MYSQL_ROOT_PASSWORD: ${DB_ROOT_PWD}
         networks:
-            - my_project-network
+            - project-network
 
-    # phpmyadmin
-    my_project-adminer:
-        container_name: my_project-adminer
-        image: adminer:4-standalone
-        restart: always
+    # db admin
+    # https://hub.docker.com/_/adminer
+    database-admin:
+        container_name: ${DB_ADMIN_CONTAINER_NAME}
+        image: adminer
         ports:
-          - 8081:8080
+            - ${DB_ADMIN_PORT}:8080
         networks:
-            - my_project-network
+            - project-network
 
 networks:
-    my_project-network:
+    project-network:
