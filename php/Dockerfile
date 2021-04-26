@@ -1,5 +1,5 @@
 
-FROM php:7.4-fpm
+FROM php:8-fpm
 
 # Install PHP modules
 RUN apt-get update \
