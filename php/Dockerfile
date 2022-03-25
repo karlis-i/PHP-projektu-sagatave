@@ -1,5 +1,5 @@
 
-FROM php:7.4-fpm
+FROM php:8-fpm
 
 # Install PHP modules
 RUN apt-get update \
@@ -21,4 +21,4 @@ RUN sed -i -e 's/;date.default_longitude = 35.2333/date.default_longitude = 24.1
 EXPOSE 9000
 
 # Set working directory
-WORKDIR /
+WORKDIR /var/www/project

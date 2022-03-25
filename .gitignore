@@ -1,4 +1,9 @@
 
+mysql/
+
+project/vendor/
+project/node_modules
+
+.vscode/
 .idea/
-mysql/*
-application/vendor/*
+.settings/
