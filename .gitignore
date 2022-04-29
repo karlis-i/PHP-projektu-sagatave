@@ -1,8 +1,8 @@
 
 mysql/
 
-project/vendor/
-project/node_modules
+src/vendor/
+src/node_modules
 
 .vscode/
 .idea/

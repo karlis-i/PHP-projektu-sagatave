@@ -21,4 +21,4 @@ RUN sed -i -e 's/;date.default_longitude = 35.2333/date.default_longitude = 24.1
 EXPOSE 9000
 
 # Set working directory
-WORKDIR /var/www/project
+WORKDIR /var/www/src
