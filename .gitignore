@@ -1,5 +1,6 @@
 
 mysql/
+postgresql/
 
 src/vendor/
 src/node_modules
